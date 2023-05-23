@@ -7,11 +7,8 @@ import com.example.ebankingbackend.dtos.SavingBankAccountDTO;
 import com.example.ebankingbackend.entities.*;
 import com.example.ebankingbackend.enums.AccountStatus;
 import com.example.ebankingbackend.enums.OperationType;
-<<<<<<< HEAD
 import com.example.ebankingbackend.exceptions.CustomerNotFoundException;
-=======
 import com.example.ebankingbackend.exceptions.BankAccountNotFoundException;
->>>>>>> df97d7e52aebcd0d742549be6434daf6fabe2f40
 import com.example.ebankingbackend.repositories.AccountOperationRepository;
 import com.example.ebankingbackend.repositories.BankAccountRepository;
 import com.example.ebankingbackend.repositories.CustomerRepository;
@@ -34,7 +31,7 @@ public class EbankingBackendApplication {
     }
 
     @Bean
-<<<<<<< HEAD
+
     CommandLineRunner commandLineRunner(BankAccountService bankAccountService){
         return args -> {
             Stream.of("youness","Karim","Mohammed").forEach(name->{
@@ -68,36 +65,8 @@ public class EbankingBackendApplication {
         };
     }
     //@Bean
-    CommandLineRunner commandLineRunner(BankService bankService) {
-=======
-    CommandLineRunner commandLineRunner(BankAccountService bankAccountService) {
->>>>>>> df97d7e52aebcd0d742549be6434daf6fabe2f40
-        return args -> {
-            Stream.of("youness","mohammed","aya").forEach(name->{
-                Customer customer=new Customer();
-                customer.setName(name);
-                customer.setEmail(name+"@gmail.com");
-                bankAccountService.saveCustomer(customer);
-            });
-            bankAccountService.listCustomer().forEach(customer -> {
-                try {
-                    bankAccountService.saveCurrentBankAcount(Math.random()*90000,9000,customer.getId());
-                    bankAccountService.saveSavingBankAcount(Math.random()*134556,5.5,customer.getId());
-                    List<BankAccount> bankAccounts=bankAccountService.bankAccountList();
-                    for (BankAccount bankAccount:bankAccounts){
-                           for( int i=0;i<10;i++){
-                        bankAccountService.credit(bankAccount.getId(), 10000+Math.random()*123000,"Credit");
-                        bankAccountService.debit(bankAccount.getId(),1000+Math.random()*9000,"debit");
-                           }}
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }catch (BankAccountNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        };
-    }
-//@Bean
+
+
         CommandLineRunner start (CustomerRepository customerRepository,
                 BankAccountRepository bankAccountRepository,
                 AccountOperationRepository accountOperationRepository){
